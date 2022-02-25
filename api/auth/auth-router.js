@@ -50,8 +50,8 @@ checkUsernameAvail,
 });
 
 router.post('/login', 
-checkUsernameExists, 
-validateEntry, 
+validateEntry,
+checkUsernameExists,  
 (req, res, next) => {
       if(bcrypt.compareSync(req.body.password, req.user.password)) {
         const token = getToken(req.user)
