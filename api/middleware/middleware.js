@@ -1,4 +1,4 @@
-// const User = require('../users/user-model');
+const User = require('../users/user-model');
 const { findBy } = require('../users/user-model');
 
 // username must not exist already in the `users` table
@@ -7,7 +7,7 @@ const { findBy } = require('../users/user-model');
 //  
 const checkUsernameAvail = async (req, res, next) => {
     try{
-        const [user] = await findBy(req.body.username);
+        const user = await User.findBy(req.body.username);
         if(user) {
             next({ status: 401, message:'username taken'});
         } else {
@@ -49,7 +49,7 @@ const validateEntry = (req, res, next) => {
 
 const checkUsernameExists = async (req, res, next) => {
     try{
-        const [user] = await findBy({ username: req.body.username})
+        const user = await User.findBy(req.body.username)
         if (!user) {
             next({ status: 401, message: 'invalid credentials'})
         } else {
