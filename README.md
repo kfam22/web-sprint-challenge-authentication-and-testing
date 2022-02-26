@@ -30,7 +30,7 @@ Your finished project must include all of the following requirements (further in
 
 - [X] An authentication workflow with functionality for account creation and login, implemented inside `api/auth/auth-router.js`.
 - [X] Middleware used to restrict access to resources from non-authenticated requests, implemented inside `api/middleware/restricted.js`.
-- [ ] A minimum of 2 tests per API endpoint, written inside `api/server.test.js`.
+- [X] A minimum of 2 tests per API endpoint, written inside `api/server.test.js`.
 
 **IMPORTANT Notes:**
 
@@ -54,6 +54,40 @@ Your finished project must include all of the following requirements (further in
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics.
 
 1. Differences between using _sessions_ or _JSON Web Tokens_ for authentication.
+-Sessions are a way to persist data across many requests.  They create a session 
+id which is stored on a cooke that is sent back and forth with each request in 
+the request header and used to verify the user. Cookies are automatically sent 
+with each request, they are separate from the API server and can automatically
+remove old session data.  Some disadvantages ar that they are small in size,
+they could be hacked, and it's hard to reset the cache without losing all
+session data.
+
+-JSON Web Tokens (JWT) have a token based application and the server creates
+JWT with a secret then sends it to the client where it is then stored in local
+storage.  After it's in local storage, the token includes a header with each
+request. With tokens, user's state is stored in the token on the client side
+rather than on the server side.  JWT is better for scalability and often used
+for authentication.
+
 2. What does `bcryptjs` do to help us store passwords in a secure manner?
+-Bcryptjs provides key derivation or hashing functions.  It also implements
+salting and accumulative hashing rounds to ensure that passwords are protected
+against hackers.
+
 3. How are unit tests different from integration and end-to-end testing?
+-Unit tests test individual unit behavior and functionality, often just 
+one function/method at a time.  There are often many unit tests which are 
+fast and meant to be run often to avoid bugs at the base level
+
+-Integration tests test how different parts of the system work together.
+Integration testing is used for endpoints .
+
+-End to end tests are used to test data access.  They test the entire 
+program and tend to be slower and take more time because they perform
+operations and run queries against an actual database like the one used
+for production.
+
 4. How does _Test Driven Development_ change the way we write applications and tests?
+Test driven development saves time, energy and money by helping developers 
+catch bugs early on and easily get to the root of any problem. It encourages
+developers to write modular code that has the purpose completing a specific task.

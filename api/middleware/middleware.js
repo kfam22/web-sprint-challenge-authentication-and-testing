@@ -1,6 +1,4 @@
 const User = require('../users/user-model');
-const { findBy } = require('../users/user-model');
-
 // username must not exist already in the `users` table
 // On FAILED registration due to the `username` being taken,
 // the response body should include a string exactly as follows: "username taken".
